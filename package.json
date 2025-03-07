@@ -12,8 +12,18 @@
     "type-check": "vue-tsc --build",
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix",
-    "lint": "run-s lint:*",
-    "format": "prettier --write src/"
+    "lint": "run-p lint:stage type-check spellcheck",
+    "format": "prettier --write src/",
+    "lint:style": "stylelint **/*.{vue,css}",
+    "spellcheck": "cspell lint --dot --gitignore --color --cache --show-suggestions \"src/**/*.@(html|js|cjs|mjs|ts|tsx|css|scss|md|vue)\"",
+    "lint:stage": "lint-staged",
+    "prepare": "husky install",
+    "commit": "git-cz"
+  },
+  "lint-staged": {
+    "*.{html,vue,css,sass,scss,ts}": "prettier --write",
+    "*.{vue,ts}": "eslint --fix",
+    "*.{vue,css,sass,scss}": "stylelint --fix"
   },
   "dependencies": {
     "pinia": "^3.0.1",
@@ -24,6 +34,7 @@
     "@commitlint/cli": "19.7.1",
     "@commitlint/config-conventional": "19.7.1",
     "@commitlint/cz-commitlint": "19.6.1",
+    "commitizen": "4.3.0",
     "stylelint": "16.15.0",
     "stylelint-config-standard": "37.0.0",
     "stylelint-config-prettier": "9.0.5",
@@ -51,6 +62,9 @@
     "vite": "^6.1.0",
     "vite-plugin-vue-devtools": "^7.7.2",
     "vitest": "^3.0.5",
-    "vue-tsc": "^2.2.2"
+    "vue-tsc": "^2.2.2",
+    "cspell": "6.31.2",
+    "husky": "8.0.3",
+    "lint-staged": "13.2.3"
   }
 }

@@ -1,0 +1,6 @@
+commitlint
+optimizelegibility
+pinia
+rushstack
+stylelint
+vuejs
