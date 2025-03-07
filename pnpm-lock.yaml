@@ -26,7 +26,7 @@ importers:
         version: 19.7.1
       '@commitlint/cz-commitlint':
         specifier: 19.6.1
-        version: 19.6.1(@types/node@22.13.9)(commitizen@4.3.0(@types/node@22.13.9)(typescript@5.7.3))(inquirer@9.3.7)(typescript@5.7.3)
+        version: 19.6.1(@types/node@22.13.9)(commitizen@4.3.1(@types/node@22.13.9)(typescript@5.7.3))(inquirer@9.3.7)(typescript@5.7.3)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.0
@@ -58,11 +58,14 @@ importers:
         specifier: ^0.7.0
         version: 0.7.0(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
       commitizen:
-        specifier: 4.3.0
-        version: 4.3.0(@types/node@22.13.9)(typescript@5.7.3)
+        specifier: 4.3.1
+        version: 4.3.1(@types/node@22.13.9)(typescript@5.7.3)
       cspell:
         specifier: 6.31.2
         version: 6.31.2
+      cz-git:
+        specifier: 1.7.0
+        version: 1.7.0
       eslint:
         specifier: ^9.20.1
         version: 9.21.0(jiti@2.4.2)
@@ -1471,8 +1474,8 @@ packages:
     resolution: {integrity: sha512-bKw/r35jR3HGt5PEPm1ljsQQGyCrR8sFGNiN5L+ykDHdpO8Smxkrkla9Yi6NkQyUrb8V54PGhfMs6NrIwtxtdw==}
     engines: {node: '>= 6'}
 
-  commitizen@4.3.0:
-    resolution: {integrity: sha512-H0iNtClNEhT0fotHvGV3E9tDejDeS04sN1veIebsKYGMuGscFaswRoYJKmT3eW85eIJAs0F28bG2+a/9wCOfPw==}
+  commitizen@4.3.1:
+    resolution: {integrity: sha512-gwAPAVTy/j5YcOOebcCRIijn+mSjWJC+IYKivTu6aG8Ei/scoXgfsMRnuAk6b0GRste2J4NGxVdMN3ZpfNaVaw==}
     engines: {node: '>= 12'}
     hasBin: true
 
@@ -1602,6 +1605,10 @@ packages:
   cz-conventional-changelog@3.3.0:
     resolution: {integrity: sha512-U466fIzU5U22eES5lTNiNbZ+d8dfcHcssH4o7QsdWaCcRs/feIPCxKYSWkYBNs5mny7MvEfwpTLWjvbm94hecw==}
     engines: {node: '>= 10'}
+
+  cz-git@1.7.0:
+    resolution: {integrity: sha512-A9ix8zJtRfuj7aXrlS2K6SqrFy/9VcoHOeZKEYM0qG4h++9p4/vkeEjHpwxHN0S2ARtbmlKypjrhVkFtFnBG1Q==}
+    engines: {node: '>=v12.20.0'}
 
   dargs@8.1.0:
     resolution: {integrity: sha512-wAV9QHOsNbwnWdNW2FYvE1P56wtgSbM+3SZcdGiWQILwVjACCXDCI3Ai8QlCjMDB8YK5zySiXZYBiwGmNY3lnw==}
@@ -3786,13 +3793,13 @@ snapshots:
       '@commitlint/types': 19.5.0
       ajv: 8.17.1
 
-  '@commitlint/cz-commitlint@19.6.1(@types/node@22.13.9)(commitizen@4.3.0(@types/node@22.13.9)(typescript@5.7.3))(inquirer@9.3.7)(typescript@5.7.3)':
+  '@commitlint/cz-commitlint@19.6.1(@types/node@22.13.9)(commitizen@4.3.1(@types/node@22.13.9)(typescript@5.7.3))(inquirer@9.3.7)(typescript@5.7.3)':
     dependencies:
       '@commitlint/ensure': 19.5.0
       '@commitlint/load': 19.6.1(@types/node@22.13.9)(typescript@5.7.3)
       '@commitlint/types': 19.5.0
       chalk: 5.4.1
-      commitizen: 4.3.0(@types/node@22.13.9)(typescript@5.7.3)
+      commitizen: 4.3.1(@types/node@22.13.9)(typescript@5.7.3)
       inquirer: 9.3.7
       lodash.isplainobject: 4.0.6
       word-wrap: 1.2.5
@@ -4924,7 +4931,7 @@ snapshots:
       has-own-prop: 2.0.0
       repeat-string: 1.6.1
 
-  commitizen@4.3.0(@types/node@22.13.9)(typescript@5.7.3):
+  commitizen@4.3.1(@types/node@22.13.9)(typescript@5.7.3):
     dependencies:
       cachedir: 2.3.0
       cz-conventional-changelog: 3.3.0(@types/node@22.13.9)(typescript@5.7.3)
@@ -5123,7 +5130,7 @@ snapshots:
   cz-conventional-changelog@3.3.0(@types/node@22.13.9)(typescript@5.7.3):
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.0(@types/node@22.13.9)(typescript@5.7.3)
+      commitizen: 4.3.1(@types/node@22.13.9)(typescript@5.7.3)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
@@ -5133,6 +5140,8 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
       - typescript
+
+  cz-git@1.7.0: {}
 
   dargs@8.1.0: {}
 

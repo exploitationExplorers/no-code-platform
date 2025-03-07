@@ -2,16 +2,16 @@
   "name": "no-code-platform",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",
-    "type-check": "vue-tsc --build",
+    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint:oxlint": "oxlint . --fix -D correctness --ignore-path .gitignore",
     "lint:eslint": "eslint . --fix",
+    "lint:js": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "lint": "run-p lint:stage type-check spellcheck",
     "format": "prettier --write src/",
     "lint:style": "stylelint **/*.{vue,css}",
@@ -34,7 +34,7 @@
     "@commitlint/cli": "19.7.1",
     "@commitlint/config-conventional": "19.7.1",
     "@commitlint/cz-commitlint": "19.6.1",
-    "commitizen": "4.3.0",
+    "commitizen": "4.3.1",
     "stylelint": "16.15.0",
     "stylelint-config-standard": "37.0.0",
     "stylelint-config-prettier": "9.0.5",
@@ -65,6 +65,7 @@
     "vue-tsc": "^2.2.2",
     "cspell": "6.31.2",
     "husky": "8.0.3",
-    "lint-staged": "13.2.3"
+    "lint-staged": "13.2.3",
+    "cz-git": "1.7.0"
   }
 }
