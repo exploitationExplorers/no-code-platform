@@ -1,11 +1,6 @@
+@import url('./reset.css');
 @import url('./base.css');
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
-}
+@import url('./variable.css');
 
 a,
 .green {
