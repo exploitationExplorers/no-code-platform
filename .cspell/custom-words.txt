@@ -1,6 +1,8 @@
+behaviour
+Byelide
 commitlint
-optimizelegibility
+conventionalcommits
 pinia
-rushstack
-stylelint
+tiptap
+vuedraggable
 vuejs
