@@ -6,7 +6,7 @@ const time = ref(new Date().toLocaleTimeString())
 let timer: number | null = null
 
 onMounted(() => {
-  timer = setInterval(() => {
+  timer = window.setInterval(() => {
     const date = new Date()
     time.value = date.toLocaleTimeString()
   }, 1000)

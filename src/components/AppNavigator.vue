@@ -3,7 +3,7 @@ import { useEnvStore, userTime } from '@/stores/debug'
 import { Data, LayoutThree, Lightning, Share, Bug } from '@icon-park/vue-next'
 import { computed, defineComponent, h } from 'vue'
 import { useRoute } from 'vue-router'
-
+import '@/stores/calculator'
 const linkItems = [
   {
     value: 'dataSource',
@@ -67,35 +67,23 @@ const Icon = defineComponent({
   <div class="app-navigator">
     <div class="app-info-wrapper">
       <div class="app-logo">
-        <img
-          src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/11.3.0/2/svg/1f469-200d-1f692.svg"
-        />
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/11.3.0/2/svg/1f469-200d-1f692.svg" />
       </div>
       <h1 class="app-name">Platform {{ time }}</h1>
     </div>
     <div class="app-navigator-link-wrapper">
-      <RouterLink
-        class="app-navigator-link-item"
-        v-for="item in linkItems"
-        :key="item.value"
-        :style="activeLink === item.value && { background: item.bg }"
-        :to="item.value"
-      >
-        <div
-          :style="{
-            lineHeight: 0.7,
-            color: activeLink === item.value ? item.color : 'var(--color-gray-700)'
-          }"
-        >
+      <RouterLink class="app-navigator-link-item" v-for="item in linkItems" :key="item.value"
+        :style="activeLink === item.value && { background: item.bg }" :to="item.value">
+        <div :style="{
+          lineHeight: 0.7,
+          color: activeLink === item.value ? item.color : 'var(--color-gray-700)'
+        }">
           <Icon :type="item.value" :active="activeLink === item.value" />
         </div>
         <span class="item-title">
           {{ item.label }}
         </span>
-        <div
-          class="item-border"
-          :style="activeLink === item.value ? { background: item.borderColor } : {}"
-        ></div>
+        <div class="item-border" :style="activeLink === item.value ? { background: item.borderColor } : {}"></div>
       </RouterLink>
     </div>
     <div class="app-setting-wrapper">
