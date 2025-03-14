@@ -16,6 +16,7 @@ const eventEmitterMap: Record<EventKey, string> = {
   'drag-leave': 'onDragLeave',
   'drop-ready': 'onDropReady'
 }
+
 export const SmoothDndContainer = defineComponent({
   name: 'SmoothDndContainer',
   setup() {
@@ -25,15 +26,17 @@ export const SmoothDndContainer = defineComponent({
   },
   mounted() {
     // emit events
-    const options: any = Object.assign({}, this.$props)
+    const options = Object.assign({}, this.$props)
+    console.log(options)
+
     for (const key in eventEmitterMap) {
       const eventKey = key as EventKey
-      // options[eventEmitterMap[eventKey]]  = (props:any) => {
-      //   this.$emit(eventKey,props)
-      // }
+      options[eventEmitterMap[eventKey]] = (props) => {
+        this.$emit(eventKey, props)
+      }
     }
     const containerElement = this.$refs.container || this.$el
-    this.container = smoothDnD(containerElement, options)
+    this.container = smoothDnD(containerElement, options as unknown as ContainerOptions)
   },
   unmounted() {
     if (this.container) {
@@ -70,6 +73,8 @@ export const SmoothDndContainer = defineComponent({
   },
   render() {
     const tagProps = getTagProps(this)
+    console.log(this, 'this')
+
     return h(
       tagProps.value,
       Object.assign({}, { ref: 'container' }, tagProps.props),

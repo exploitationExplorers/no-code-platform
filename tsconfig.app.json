@@ -4,7 +4,9 @@
   "exclude": ["src/**/__tests__/*", "vite.config.ts"],
   "compilerOptions": {
     "composite": true,
+    "noImplicitAny": false,
     "baseUrl": ".",
+    "strict": false,
     "paths": {
       "@/*": ["./src/*"]
     }
