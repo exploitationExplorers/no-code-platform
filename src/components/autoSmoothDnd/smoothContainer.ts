@@ -1,4 +1,5 @@
 import { defineComponent, h } from 'vue'
+import type { Ref } from 'vue'
 import { smoothDnD, dropHandlers } from 'smooth-dnd'
 import type { ContainerOptions, SmoothDnD } from 'smooth-dnd'
 import { getTagProps, validateTagProp } from './utils'
@@ -31,7 +32,7 @@ export const SmoothDndContainer = defineComponent({
 
     for (const key in eventEmitterMap) {
       const eventKey = key as EventKey
-      options[eventEmitterMap[eventKey]] = (props) => {
+      options[eventEmitterMap[eventKey]] = (props: Ref) => {
         this.$emit(eventKey, props)
       }
     }
@@ -59,6 +60,7 @@ export const SmoothDndContainer = defineComponent({
     nonDragAreaSelector: String,
     lockAxis: String,
     dragClass: String,
+
     dropClass: String,
     dragBeginDelay: Number,
     getChildPayload: Function,
