@@ -7,4 +7,4 @@ await import('./check-commit').catch((out) => {
 
 console.log('printf "检测通过, 创建 commit 中...\n')
 
-await $`git add .`
+//await $`git add .`
