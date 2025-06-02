@@ -9,6 +9,7 @@ export const SmoothDndDraggable = defineComponent({
       validator: validateTagProp,
       default: 'div'
     }
+    // wrapperClass: String
   },
   render: function () {
     //wrap child

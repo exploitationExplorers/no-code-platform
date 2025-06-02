@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Rotating Diamond Glass Effect</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #000;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective: 1200px;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+      }
+
+      /* 科技隧道背景 */
+      .tunnel-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        overflow: hidden;
+      }
+
+      .tunnel {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        /* animation: tunnelRotate 60s infinite linear; */
+      }
+
+      @keyframes tunnelRotate {
+        0% {
+          transform: rotateZ(0deg);
+        }
+        100% {
+          transform: rotateZ(360deg);
+        }
+      }
+
+      /* 创建隧道的多个层 */
+      .tunnel-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+      }
+
+      /* 隧道墙壁 */
+      .tunnel-wall {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200vmax; /* 使用视口相对单位 */
+        height: 200vmax;
+        background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.9) 0px,
+          rgba(0, 0, 0, 0.9) 2vmin,
+          rgba(30, 30, 30, 0.9) 2vmin,
+          rgba(30, 30, 30, 0.9) 4vmin
+        );
+        transform-origin: center;
+        transform: translate(-50%, -50%) rotateX(90deg) translateZ(-100vmax);
+      }
+
+      /* 隧道光线效果 */
+      .light-strip {
+        position: absolute;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 100, 50, 0) 0%,
+          rgba(255, 100, 50, 0.8) 50%,
+          rgba(255, 100, 50, 0) 100%
+        );
+        box-shadow: 0 0 2vmin rgba(255, 100, 50, 0.8);
+      }
+
+      .light-strip-horizontal {
+        height: 0.3vmin;
+        width: 100%;
+      }
+
+      .light-strip-vertical {
+        width: 0.3vmin;
+        height: 100%;
+      }
+
+      /* 创建多个光线 */
+      .light-strip:nth-child(1) {
+        top: 20%;
+        left: 0;
+        width: 100%;
+        height: 0.3vmin;
+      }
+
+      .light-strip:nth-child(2) {
+        top: 80%;
+        left: 0;
+        width: 100%;
+        height: 0.3vmin;
+      }
+
+      .light-strip:nth-child(3) {
+        top: 0;
+        left: 30%;
+        width: 0.3vmin;
+        height: 100%;
+      }
+
+      .light-strip:nth-child(4) {
+        top: 0;
+        left: 70%;
+        width: 0.3vmin;
+        height: 100%;
+      }
+
+      /* 蓝色光线 */
+      .blue-light {
+        position: absolute;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 150, 255, 0) 0%,
+          rgba(0, 150, 255, 0.8) 50%,
+          rgba(0, 150, 255, 0) 100%
+        );
+        box-shadow: 0 0 2vmin rgba(0, 150, 255, 0.8);
+      }
+
+      .blue-light:nth-child(5) {
+        top: 40%;
+        left: 0;
+        width: 100%;
+        height: 0.3vmin;
+      }
+
+      .blue-light:nth-child(6) {
+        top: 60%;
+        left: 0;
+        width: 100%;
+        height: 0.3vmin;
+      }
+
+      .blue-light:nth-child(7) {
+        top: 0;
+        left: 10%;
+        width: 0.3vmin;
+        height: 100%;
+      }
+
+      .blue-light:nth-child(8) {
+        top: 0;
+        left: 90%;
+        width: 0.3vmin;
+        height: 100%;
+      }
+
+      /* 隧道深度层 */
+      .tunnel-depth {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border: 0.2vmin solid rgba(50, 50, 50, 0.5);
+        transform: translate(-50%, -50%) rotateX(90deg) translateZ(0);
+      }
+
+      .tunnel-depth:nth-child(1) {
+        transform: translate(-50%, -50%) rotateX(90deg) translateZ(0px);
+        width: 90vmin;
+        height: 90vmin;
+      }
+
+      .tunnel-depth:nth-child(2) {
+        transform: translate(-50%, -50%) rotateX(90deg) translateZ(-20vmin);
+        width: 80vmin;
+        height: 80vmin;
+        border-color: rgba(60, 60, 60, 0.5);
+      }
+
+      .tunnel-depth:nth-child(3) {
+        transform: translate(-50%, -50%) rotateX(90deg) translateZ(-40vmin);
+        width: 70vmin;
+        height: 70vmin;
+        border-color: rgba(70, 70, 70, 0.5);
+      }
+
+      .tunnel-depth:nth-child(4) {
+        transform: translate(-50%, -50%) rotateX(90deg) translateZ(-60vmin);
+        width: 60vmin;
+        height: 60vmin;
+        border-color: rgba(80, 80, 80, 0.5);
+      }
+
+      .tunnel-depth:nth-child(5) {
+        transform: translate(-50%, -50%) rotateX(90deg) translateZ(-80vmin);
+        width: 50vmin;
+        height: 50vmin;
+        border-color: rgba(90, 90, 90, 0.5);
+      }
+
+      /* 隧道光点 */
+      .light-dots {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+      }
+
+      .light-dot {
+        position: absolute;
+        width: 0.4vmin;
+        height: 0.4vmin;
+        background-color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 1vmin 0.2vmin rgba(255, 255, 255, 0.8);
+        animation: lightMove 8s infinite linear;
+      }
+
+      @keyframes lightMove {
+        0% {
+          transform: translateZ(-100vmin);
+          opacity: 0;
+        }
+        30% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateZ(50vmin);
+          opacity: 0;
+        }
+      }
+
+      /* 创建多个随机位置的光点 */
+      .light-dot:nth-child(1) {
+        top: 20%;
+        left: 30%;
+        animation-delay: 0s;
+      }
+      .light-dot:nth-child(2) {
+        top: 70%;
+        left: 60%;
+        animation-delay: 1s;
+      }
+      .light-dot:nth-child(3) {
+        top: 40%;
+        left: 80%;
+        animation-delay: 2s;
+      }
+      .light-dot:nth-child(4) {
+        top: 60%;
+        left: 20%;
+        animation-delay: 3s;
+      }
+      .light-dot:nth-child(5) {
+        top: 30%;
+        left: 50%;
+        animation-delay: 4s;
+      }
+      .light-dot:nth-child(6) {
+        top: 80%;
+        left: 40%;
+        animation-delay: 5s;
+      }
+      .light-dot:nth-child(7) {
+        top: 50%;
+        left: 70%;
+        animation-delay: 6s;
+      }
+      .light-dot:nth-child(8) {
+        top: 10%;
+        left: 90%;
+        animation-delay: 7s;
+      }
+      .light-dot:nth-child(9) {
+        top: 90%;
+        left: 10%;
+        animation-delay: 0.5s;
+      }
+      .light-dot:nth-child(10) {
+        top: 25%;
+        left: 65%;
+        animation-delay: 1.5s;
+      }
+
+      /* 在移动设备上减少光点数量 */
+      @media (max-width: 768px) {
+        .light-dot:nth-child(n + 8) {
+          display: none;
+        }
+      }
+
+      /* 菱形容器 - 响应式尺寸 */
+      .diamond-container {
+        position: relative;
+        width: 30vmin; /* 视口相对单位 */
+        height: 30vmin;
+        transform-style: preserve-3d;
+        animation: rotateY 15s infinite linear;
+        z-index: 10;
+      }
+
+      @keyframes rotateY {
+        0% {
+          transform: rotateY(0deg);
+        }
+        100% {
+          transform: rotateY(360deg);
+        }
+      }
+
+      /* 菱形 */
+      .diamond {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transform: rotate(45deg);
+      }
+
+      /* 菱形面 */
+      .face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 0.1vmin solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(0.5vmin);
+        box-shadow:
+          0 0 2vmin rgba(0, 150, 255, 0.5),
+          inset 0 0 2vmin rgba(0, 150, 255, 0.3);
+        transform-style: preserve-3d;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .face.front {
+        transform: translateZ(15vmin);
+      }
+
+      .face.back {
+        transform: translateZ(-15vmin) rotateY(180deg);
+      }
+
+      .face.left {
+        transform: translateX(-15vmin) rotateY(-90deg);
+      }
+
+      .face.right {
+        transform: translateX(15vmin) rotateY(90deg);
+      }
+
+      .face.top {
+        transform: translateY(-15vmin) rotateX(90deg);
+      }
+
+      .face.bottom {
+        transform: translateY(15vmin) rotateX(-90deg);
+      }
+
+      /* 辐射标志 - 响应式尺寸 */
+      .emblem {
+        width: 10vmin;
+        height: 10vmin;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 255, 255, 0.5) 30%,
+          rgba(255, 255, 255, 0.2) 60%,
+          rgba(0, 0, 0, 0) 70%
+        );
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 1.5vmin rgba(255, 255, 255, 0.8);
+      }
+
+      .emblem::before {
+        content: '';
+        position: absolute;
+        width: 6vmin;
+        height: 6vmin;
+        border-radius: 50%;
+        border: 0.5vmin solid rgba(0, 0, 0, 0.7);
+        box-shadow: 0 0 1vmin rgba(0, 150, 255, 0.8);
+      }
+
+      .emblem::after {
+        content: '';
+        position: absolute;
+        width: 1.5vmin;
+        height: 1.5vmin;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 1vmin rgba(255, 255, 255, 1);
+      }
+
+      /* 辐射条纹 */
+      .radiation {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      .radiation::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 1.5vmin;
+        background: rgba(0, 0, 0, 0.7);
+        clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+      }
+
+      .radiation-1 {
+        transform: rotate(0deg);
+      }
+
+      .radiation-2 {
+        transform: rotate(60deg);
+      }
+
+      .radiation-3 {
+        transform: rotate(120deg);
+      }
+
+      /* 发光效果 - 响应式尺寸 */
+      .glow {
+        position: absolute;
+        width: 40vmin;
+        height: 40vmin;
+        background: radial-gradient(
+          circle,
+          rgba(0, 150, 255, 0.3) 0%,
+          rgba(255, 100, 50, 0.2) 50%,
+          rgba(0, 0, 0, 0) 70%
+        );
+        border-radius: 50%;
+        filter: blur(2vmin);
+        animation: pulse 4s infinite alternate;
+        z-index: 5;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.5;
+          transform: scale(0.8);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+
+      /* 光束效果 */
+      .light-beam {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          transparent 0%,
+          rgba(0, 150, 255, 0.1) 20%,
+          rgba(0, 150, 255, 0.2) 50%,
+          rgba(0, 150, 255, 0.1) 80%,
+          transparent 100%
+        );
+        transform: translateZ(-50vmin) rotateX(90deg);
+        filter: blur(0.5vmin);
+        animation: beam 8s infinite alternate;
+        z-index: 4;
+      }
+
+      @keyframes beam {
+        0% {
+          opacity: 0.3;
+          transform: translateZ(-50vmin) rotateX(90deg) translateY(0);
+        }
+        100% {
+          opacity: 0.7;
+          transform: translateZ(-50vmin) rotateX(90deg) translateY(-20vmin);
+        }
+      }
+
+      /* 移动设备优化 */
+      @media (max-width: 768px) {
+        /* 减少动画复杂度以提高性能 */
+        .tunnel {
+          animation-duration: 90s; /* 减慢旋转速度 */
+        }
+
+        /* 减少隧道深度层数量 */
+        .tunnel-depth:nth-child(5) {
+          display: none;
+        }
+
+        /* 简化光束效果 */
+        .light-beam {
+          filter: blur(0.3vmin);
+        }
+
+        /* 减少发光效果的模糊半径 */
+        .glow {
+          filter: blur(1.5vmin);
+        }
+      }
+
+      /* 小屏幕设备进一步优化 */
+      @media (max-width: 480px) {
+        /* 进一步减少动画复杂度 */
+        .tunnel-depth:nth-child(4) {
+          display: none;
+        }
+
+        /* 减少光点数量 */
+        .light-dot:nth-child(n + 6) {
+          display: none;
+        }
+
+        /* 减小菱形尺寸 */
+        .diamond-container {
+          width: 25vmin;
+          height: 25vmin;
+        }
+
+        .face.front {
+          transform: translateZ(12.5vmin);
+        }
+        .face.back {
+          transform: translateZ(-12.5vmin) rotateY(180deg);
+        }
+        .face.left {
+          transform: translateX(-12.5vmin) rotateY(-90deg);
+        }
+        .face.right {
+          transform: translateX(12.5vmin) rotateY(90deg);
+        }
+        .face.top {
+          transform: translateY(-12.5vmin) rotateX(90deg);
+        }
+        .face.bottom {
+          transform: translateY(12.5vmin) rotateX(-90deg);
+        }
+
+        /* 减小辐射标志尺寸 */
+        .emblem {
+          width: 8vmin;
+          height: 8vmin;
+        }
+
+        .emblem::before {
+          width: 5vmin;
+          height: 5vmin;
+        }
+
+        .emblem::after {
+          width: 1.2vmin;
+          height: 1.2vmin;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 科技隧道背景 -->
+    <div class="tunnel-container">
+      <div class="tunnel">
+        <!-- 隧道墙壁 -->
+        <div class="tunnel-wall"></div>
+
+        <!-- 隧道深度层 -->
+        <div class="tunnel-depth"></div>
+        <div class="tunnel-depth"></div>
+        <div class="tunnel-depth"></div>
+        <div class="tunnel-depth"></div>
+        <div class="tunnel-depth"></div>
+
+        <!-- 光线条 -->
+        <div class="light-strip light-strip-horizontal"></div>
+        <div class="light-strip light-strip-horizontal"></div>
+        <div class="light-strip light-strip-vertical"></div>
+        <div class="light-strip light-strip-vertical"></div>
+
+        <!-- 蓝色光线 -->
+        <div class="blue-light light-strip-horizontal"></div>
+        <div class="blue-light light-strip-horizontal"></div>
+        <div class="blue-light light-strip-vertical"></div>
+        <div class="blue-light light-strip-vertical"></div>
+
+        <!-- 光点 -->
+        <div class="light-dots">
+          <div class="light-dot"></div>
+          <div class="light-dot"></div>
+          <div class="light-dot"></div>
+          <div class="light-dot"></div>
+          <div class="light-dot"></div>
+          <div class="light-dot"></div>
+          <div class="light-dot"></div>
+          <div class="light-dot"></div>
+          <div class="light-dot"></div>
+          <div class="light-dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 发光效果 -->
+    <div class="glow"></div>
+    <div class="light-beam"></div>
+
+    <!-- 旋转菱形 -->
+    <div class="diamond-container">
+      <div class="diamond">
+        <!-- 六个面 -->
+        <div class="face front">
+          <div class="emblem">
+            <div class="radiation radiation-1"></div>
+            <div class="radiation radiation-2"></div>
+            <div class="radiation radiation-3"></div>
+          </div>
+        </div>
+        <div class="face back">
+          <div class="emblem">
+            <div class="radiation radiation-1"></div>
+            <div class="radiation radiation-2"></div>
+            <div class="radiation radiation-3"></div>
+          </div>
+        </div>
+        <div class="face left">
+          <div class="emblem">
+            <div class="radiation radiation-1"></div>
+            <div class="radiation radiation-2"></div>
+            <div class="radiation radiation-3"></div>
+          </div>
+        </div>
+        <div class="face right">
+          <div class="emblem">
+            <div class="radiation radiation-1"></div>
+            <div class="radiation radiation-2"></div>
+            <div class="radiation radiation-3"></div>
+          </div>
+        </div>
+        <div class="face top">
+          <div class="emblem">
+            <div class="radiation radiation-1"></div>
+            <div class="radiation radiation-2"></div>
+            <div class="radiation radiation-3"></div>
+          </div>
+        </div>
+        <div class="face bottom">
+          <div class="emblem">
+            <div class="radiation radiation-1"></div>
+            <div class="radiation radiation-2"></div>
+            <div class="radiation radiation-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
