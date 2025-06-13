@@ -6,7 +6,9 @@ export function findColors(doc: Node): DecorationSet {
   const decorations: Decoration[] = []
 
   doc.descendants((node, position) => {
+    console.info(node, 'node')
     if (!node.text) {
+      return
     }
 
     Array.from(node.text.matchAll(hexColor)).forEach((match) => {
