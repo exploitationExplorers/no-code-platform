@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { PreviewType } from './type'
-import PreviewModeSwitcher from './PreviewModeSwitcher.vue'
 import BlockRender from '@/blocks/BlockRender.vue'
+
+import PreviewModeSwitcher from './PreviewModeSwitcher.vue'
+import type { PreviewType } from './type'
 const props = defineProps<{
   previewMode?: PreviewType
 }>()
