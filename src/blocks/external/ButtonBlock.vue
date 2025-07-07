@@ -27,5 +27,6 @@ console.log('🚀 ~ file: ButtonBlock.vue:12 ~ props:', props)
   font-weight: var(--font-weight-bold);
   color: var(--color-white);
   background-color: var(--color-primary);
+  cursor: pointer;
 }
 </style>

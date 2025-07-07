@@ -1,13 +1,14 @@
-import type { BlockType } from '@/types/block'
+import type { App } from 'vue'
+
+import ChartBlock from '@/blocks/basic/ChatBlock.vue'
+import ImageBlock from '@/blocks/basic/ImageBlock.vue'
 import QuoteBlock from '@/blocks/basic/QuoteBlock.vue'
 import HeroTitleBlock from '@/blocks/basic/TitleBlock.vue'
 import ViewBlock from '@/blocks/basic/ViewBlock.vue'
-import ChartBlock from '@/blocks/basic/ChatBlock.vue'
-import ImageBlock from '@/blocks/basic/ImageBlock.vue'
 import ButtonBlock from '@/blocks/external/ButtonBlock.vue'
 import FormBlock from '@/blocks/external/FormBlock.vue'
 import NotesBlock from '@/blocks/external/NoteBook.vue'
-import type { App } from 'vue'
+import type { BlockType } from '@/types/block'
 
 interface BlockMaterial {
   type: BlockType
