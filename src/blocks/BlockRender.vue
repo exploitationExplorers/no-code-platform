@@ -35,16 +35,16 @@
 </template>
 
 <script setup lang="ts">
+import { Delete, Drag } from '@icon-park/vue-next'
+import { storeToRefs } from 'pinia'
+import { dropHandlers, type DropResult, smoothDnD } from 'smooth-dnd'
 import { toRaw } from 'vue'
-import { Drag, Delete } from '@icon-park/vue-next'
-import { useEnvStore } from '@/stores/debug'
-import { useAppEditorStore } from '@/stores/appEditor'
-import { smoothDnD, type DropResult, dropHandlers } from 'smooth-dnd'
-import { arrayMove } from '@/utils/arr'
 
 import { SmoothDndContainer } from '@/components/autoSmoothDnd/smoothContainer'
 import { SmoothDndDraggable } from '@/components/autoSmoothDnd/smoothDndDraggable'
-import { storeToRefs } from 'pinia'
+import { useAppEditorStore } from '@/stores/appEditor'
+import { useEnvStore } from '@/stores/debug'
+import { arrayMove } from '@/utils/arr'
 
 interface Block {
   id: string

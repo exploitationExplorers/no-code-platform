@@ -1,6 +1,7 @@
 @import url('./reset.css');
 @import url('./base.css');
 @import url('./variable.css');
+@import url('tailwindcss');
 
 a,
 .green {

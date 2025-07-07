@@ -112,7 +112,6 @@ const Icon = defineComponent({
     </div>
   </div>
 </template>
-
 <style scoped>
 .app-navigator {
   position: relative;
